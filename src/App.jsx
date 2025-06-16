@@ -4,12 +4,12 @@ import "./styles.css";
 const StartScreen = ({ handleStart }) => {
   return (
     <div className="section">
-      <h1 className="section-title">WELCOME_TO_CAMERA_PHOTO_APP</h1>
+      <h1 className="section-title">Welcome to Camera Photo App</h1>
       <p className="start-description">
         This app allows you to capture photos using your camera.
       </p>
       <button className="interaction-button" onClick={handleStart}>
-        [START]
+        Start
       </button>
     </div>
   );
@@ -81,14 +81,14 @@ const Camera = ({ setIsPhoto }) => {
 
   return (
     <div className="section">
-      <h2 className="section-title">CAMERA_MODULE</h2>
+      <h2 className="section-title">Camera Module</h2>
 
       {error && <div className="error-message">{error}</div>}
 
       {isLoading && (
         <div className="loading-container">
           <div className="spinner"></div>
-          <div className="loading-text">LOADING_CAMERA...</div>
+          <div className="loading-text">Loading camera...</div>
         </div>
       )}
 
@@ -106,7 +106,7 @@ const Camera = ({ setIsPhoto }) => {
             {stream && (
               <div>
                 <button onClick={takePhoto} className="interaction-button">
-                  [CAPTURE]
+                  Capture
                 </button>
               </div>
             )}
@@ -117,7 +117,7 @@ const Camera = ({ setIsPhoto }) => {
           <div>
             <img src={photo} alt="Captured photo" className="photo-preview" />
             <button onClick={retakePhoto} className="interaction-button">
-              [RETAKE]
+              Retake
             </button>
           </div>
         )}
@@ -127,7 +127,7 @@ const Camera = ({ setIsPhoto }) => {
         {!stream && !isLoading && (
           <div>
             <button onClick={startCamera} className="interaction-button">
-              [START_CAMERA]
+              Start Camera
             </button>
           </div>
         )}
@@ -136,23 +136,83 @@ const Camera = ({ setIsPhoto }) => {
   );
 };
 
-const Interaction = () => {
+const SelectModel = () => {
+  const [currentModel, setCurrentModel] = useState("");
+  const models = [
+    "Model A",
+    "Model B",
+    "Model C",
+    "Model D",
+  ]
+  const handleModelClick = (model) => {
+    setCurrentModel(model);
+    console.log(`Selected model: ${model}`);
+  }   
+
+return (
+  <div className="section">
+    <h2 className="section-title">Select Model</h2>
+    <div className="model-dropdown">
+      <select
+        value={currentModel}
+        onChange={(e) => handleModelClick(e.target.value)}
+        className="interaction-dropdown"
+      >
+        <option value="">Select a model...</option>
+        {models.map((model, idx) => (
+          <option key={idx} value={model}>
+            {model}
+          </option>
+        ))}
+      </select>
+      {currentModel && <p>Current Model: {currentModel}</p>}
+    </div>
+  </div>
+  );}
+
+const SelectPrompt = () => {
+  const [currentPrompt, setCurrentPrompt]= useState("");
+
+  const prompts = [
+    "Prompt Number 1",
+    "Prompt Number 2",
+    "Prompt Number 3",
+  ];
+
+  const handlePromptClick = (prompt) => {
+    setCurrentPrompt(prompt);
+    console.log(`Selected prompt: ${prompt}`);
+  }
   return (
     <div className="section">
-      <h2 className="section-title">INTERACTION_MODULE</h2>
-      <p>This is a placeholder for interaction features.</p>
-      <button className="interaction-button">[INTERACT]</button>
-      <button className="interaction-button">[INTERACT]</button>
-      <button className="interaction-button">[INTERACT]</button>
-      <button className="interaction-button">[INTERACT]</button>
+      <h2 className="section-title">Select Prompt</h2>
+      <p>Current Prompt: {currentPrompt}</p>
+      <div className="prompt-buttons">
+        {prompts.map((prompt, index) => (
+          <button
+            key={index}
+            className="interaction-button"
+            onClick={() => handlePromptClick(prompt)}
+          >
+            {prompt}
+          </button>
+        ))}
+        <button
+          className="interaction-button"
+          onClick={() => handlePromptClick("Custom Prompt...")}
+        >
+          Custom Prompt...
+        </button>
+      </div>
     </div>
   );
+
 };
 
 const TextStream = () => {
   return (
     <div className="section">
-      <h2 className="section-title">TEXT_STREAM_MODULE</h2>
+      <h2 className="section-title">Text Stream Module</h2>
       <div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
@@ -183,7 +243,7 @@ export default function App() {
   return (
     <div className="app-container">
       <div className="app-wrapper">
-        <h1 className="app-title">CAMERA_PHOTO_APP</h1>
+        <h1 className="app-title">Camera Photo App</h1>
 
         {showStartScreen ? (
           <StartScreen handleStart={handleStart} />
@@ -192,7 +252,8 @@ export default function App() {
             <Camera setIsPhoto={setIsPhoto} />
             {isPhoto && (
               <div>
-                <Interaction />
+                <SelectModel />
+                <SelectPrompt/>
                 <TextStream />
               </div>
             )}

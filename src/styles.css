@@ -176,17 +176,24 @@ button:active {
     border: 0.5px solid var(--border);
 }
 
-/* ...existing code... */
+
+.model-dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: stretch;
+  width: 100%;
+}
 
 .interaction-dropdown {
   background-color: var(--bg-secondary);
   color: var(--text-primary);
-  border: 2px solid var(--border);
+  border: 0.5px solid var(--border);
   font-weight: bold;
   font-family: "Courier New", monospace;
   letter-spacing: 1px;
   border-radius: 10px;
-  padding: 0.75rem 1rem;
+  padding: 20px;
   margin-bottom: 1rem;
   width: 100%;
   transition: all 0.1s ease;
@@ -198,15 +205,27 @@ button:active {
   outline: none;
   border-color: var(--border);
   background-color: var(--border);
-  color: var(--bg-secondary);
+  color: var(--bg-secondary);}
+
+.interaction-input {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 0.5px solid var(--border);
+  font-weight: bold;
+  font-family: "Courier New", monospace;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 10px;
+  width: 100%;
+  transition: all 0.1s ease;
+  outline: none;
 }
 
-.model-dropdown {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: stretch;
-  width: 100%;
+.interaction-input:focus {
+  border-color: var(--border);
+  background-color: var(--border);
+  color: var(--bg-secondary);
 }
 
 /* ...existing

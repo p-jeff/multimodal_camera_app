@@ -5,6 +5,7 @@ import fs from 'fs'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+   base: '/multimodal_camera_app/',
 
   server: {
     host: true,
